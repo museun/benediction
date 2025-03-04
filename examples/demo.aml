@@ -1,0 +1,10 @@
+vstack
+    hstack
+        for value in state.list
+            spacer
+            if state.selected == value
+                text [foreground: "yellow"] value
+            else
+                text value
+        spacer
+    canvas

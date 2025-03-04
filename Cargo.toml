@@ -1,0 +1,10 @@
+[package]
+name = "benediction"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+fastrand = "2.3.0"
+
+[dev-dependencies]
+anathema = { git = "https://github.com/togglebyte/anathema/", rev = "9afde0d73650eed9f4ecf46d4ccab11ecbfb70c7", version = "0.2.0" }
