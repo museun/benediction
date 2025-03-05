@@ -190,5 +190,6 @@ fn main() {
         )
         .unwrap();
 
+    runtime.fps(60);
     runtime.finish(|rt| rt.run(&mut backend)).unwrap();
 }

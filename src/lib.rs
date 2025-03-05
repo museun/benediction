@@ -346,7 +346,11 @@ impl Fire {
         height: Scalar,
         mut put: impl FnMut(Scalar, Scalar, Pixel),
     ) {
-        let offset = |x, y| x + width * y;
+        let offset = |x, y| y * width + x;
+
+        if self.particles.len() != ((width + 2) * (height + 2)) as usize {
+            self.update(width, height);
+        }
 
         for y in 0..height {
             for x in 0..width {
@@ -360,7 +364,6 @@ impl Fire {
                     offset + width * 2 + 1,
                 ]
                 .iter()
-                .filter(|&&c| c < self.particles.len())
                 .fold(0i16, |a, &t| a + (self.particles[t] as i16));
 
                 self.particles[offset] = ((v >> 2) - 2).abs().clamp(0, 255) as u8
@@ -369,7 +372,7 @@ impl Fire {
 
         for x in 0..width {
             let offset = offset(x, height) as usize;
-            self.particles[offset] = if fastrand::f32() > 0.6 { 255 } else { 0 };
+            self.particles[offset] = if fastrand::f32() > 0.7 { 255 } else { 0 };
         }
 
         for y in 0..height {
